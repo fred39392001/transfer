@@ -1,0 +1,101 @@
+{% block content %}
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="static/css/rwd_table.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+  <!-- namecard -->
+  <div class="container-fluid justify-content-center">
+
+    <div
+      class="card mb-3 card-bg-eid rounded-0 card-shadow border-warning"
+      style="max-width: 100%; height:100%;">
+      <div class="row no-gutters">
+        <div class="card-body" style="background-color:;">
+        {% include "modules/navbar.html" %}
+        <br>
+	    
+	<!-- report -->
+	<div class="col-md-8">
+          <canvas id="polar-chart"></canvas> 
+	</div>
+	<!-- report -->
+
+      </div> <!-- card-->
+    </div> <!-- row no-gutters -->    
+  </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 
+</div> <!-- container -->
+
+  </body>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    var canvasP = document.getElementById("polar-chart");
+    var ctxP = canvasP.getContext('2d');
+    var myPieChart = new Chart(ctxP, {
+      type: 'polarArea',
+      data: {
+        labels: ["終結貧窮", "消除飢餓", "健康與福祉", 
+		"優質教育", "性別平權", "淨水及衛生", 
+		"可負擔的潔淨能源", "合適的工作及經濟成長", 
+		"工業化、創新及基礎建設", "減少不平等", 
+		"永續城鄉", "責任消費及生產", "氣候行動", 
+		"保育海洋生態", "保育陸域生態", "和平、正義及健全制度", 
+		"多元夥伴關係"],
+        datasets: [
+          {
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f",
+		    "#e8c3b9","#c45850", "#8e5ea2", 
+		    "#3e95cd", "#8e5ea2", "#3cba9f", 
+		    "#e8c3b9", "#c45850", "#8e5ea2", 
+		    "#3e95cd", "#8e5ea2", "#3cba9f",
+		    "#e8c3b9", "#c45850"],
+		  data: {{list_weight}}
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: false,
+          text: '數位足跡權重'
+        },
+	legend: {
+          display: false
+        },
+      }
+  });
+
+  canvasP.onclick = function(e) {
+     var slice = myPieChart.getElementAtEvent(e);
+     if (!slice.length) return; // return if not clicked on slice
+     var label = slice[0]._model.label;
+     switch (label) {
+       // add case for each label/slice
+       case "終結貧窮":
+         //window.open('www.example.com/foo',"_self");
+         break;
+      case "消除飢餓":
+         //window.open('www.example.com/bar',"_self");
+         break;
+      // add rests ...
+     }
+  }
+  </script>
+
+
+</html>
+{% endblock %}

@@ -1,0 +1,48 @@
+  <!-- namecard -->
+  <div class="container-fluid justify-content-center">
+
+    <div
+      class="card mb-3 card-bg-eid rounded-0 card-shadow border-warning"
+      style="width: 100% ;height: 100%;">
+      <div class="row no-gutters">
+        <div class="col-md-7">
+          <div class="card-body">
+            {% include "modules/navbar.html" %}
+            <br>
+
+          <div class="h6 text-warning d-none d-md-block">
+            <p class="mr-3  mb-0">數位鎮民身份證</p>
+            <p>The eID card for digital townee.</p>
+          </div>
+         
+	  {% if message != "OK" %}
+          <div class="h6 text-warning d-none d-md-block">
+		  <p class="mr-3  mb-0" style="color:red">{{message}}</p>
+          </div>
+	  {% endif %}
+	  
+	  <div class="text-warning d-block d-md-none">
+              <p class="mr-3 d-none d-sm-block mb-0">數位鎮民身份證</p>
+              <p>The eID card for digital townee.</p>
+          </div>
+
+	  <form action="/eid" method="POST">
+            <div class="form-group">
+              <label for="username">使用者名稱：</label>
+              <input type="username" class="form-control" name="username" aria-describedby="username" placeholder="username">
+            </div>
+  
+	    <div class="form-group">
+              <label for="password">密碼：</label>
+              <input type="password" class="form-control" name="password" placeholder="password">
+            </div>
+  
+	    <button type="submit" class="btn btn-primary">送出</button>
+          </form>
+          
+	</div> <!-- col-md-7 -->
+      </div> <!-- row no-gutters -->
+      
+    </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 
+
+    </div> <!-- container -->
