@@ -1,0 +1,143 @@
+<html>
+  <head>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+	    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--<link href="static/css/style.css" rel="stylesheet" type="text/css">-->
+
+    <script>
+
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+</script>
+
+
+    <script>
+    $(function () {
+
+    var hello = getCookie("jwt");
+
+    $('form').on('submit', function(e){
+       var dataJSON = {};
+        dataJSON.username =  $("#username").val();;
+        dataJSON.password =  $("#password").val();;
+          e.preventDefault();
+          $.ajax({
+            url: "http://127.0.0.1:5566/accounts/signin",
+            type: "POST",
+	    crossDomain: true,
+            data:  dataJSON,
+            success: function(returnData) {
+              // console.log(returnData);
+	      const obj = JSON.parse(returnData);
+	      console.log(obj.token);
+
+              
+              setCookie("jwt", "123", 30);
+              let hello = getCookie("jwt");
+
+
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+              console.log(thrownError);
+            }
+          });
+      });
+ });
+    </script>
+
+  </head>
+
+  <body>
+
+  <!-- namecard -->
+  <div class="container-fluid justify-content-center">
+
+    <div
+      class="card mb-3 card-bg-eid rounded-0 card-shadow border-warning"
+      style="width: 100% ;height: 100%;">
+      <div class="row no-gutters">
+        <div class="col-md-7">
+          <div class="card-body">
+          
+	  <ul class="nav nav-tabs">
+	    <li class="nav-item">
+	      <a class="nav-link active" aria-current="page" href="/eid">身份證</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="/issues">永續合作</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="/foot_print">數位足跡</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" aria-current="page" href="/wallet">錢包</a>
+	    </li>
+	  </ul>
+
+          <br>
+
+          <div class="h6 text-warning d-none d-md-block">
+            <p class="mr-3  mb-0">數位鎮民身份證</p>
+            <p>The eID card for digital townee.</p>
+          </div>
+         
+          <div class="h6 text-warning d-none d-md-block">
+            <p id="message" class="mr-3  mb-0" style="color:red"></p>
+          </div>
+	  
+	  <div class="text-warning d-block d-md-none">
+              <p class="mr-3 d-none d-sm-block mb-0">數位鎮民身份證</p>
+              <p>The eID card for digital townee.</p>
+          </div>
+
+	  <form>
+            <div class="form-group">
+              <label for="username">使用者名稱：</label>
+              <input type="username" class="form-control" id="username" aria-describedby="username" placeholder="username">
+            </div>
+  
+	    <div class="form-group">
+              <label for="password">密碼：</label>
+              <input type="password" class="form-control" id="password" placeholder="password">
+            </div>
+  
+	    <button type="submit" class="btn btn-primary">送出</button>
+          </form>
+          
+	</div> <!-- col-md-7 -->
+      </div> <!-- row no-gutters -->
+      
+    </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 
+
+    </div> <!-- container -->
+
+  </body>
+</html>
