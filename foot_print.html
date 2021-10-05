@@ -10,9 +10,11 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="static/css/style.css" rel="stylesheet" type="text/css">
     <link href="static/css/rwd_table.css" rel="stylesheet" type="text/css">
+    <script src="static/js/navbar.js"></script>
+    <script src="static/js/init.js"></script>
   </head>
 
-  <body>
+  <body onload="init();">
 
   <!-- namecard -->
   <div class="container-fluid justify-content-center">
@@ -23,19 +25,19 @@
       <div class="row no-gutters">
         <div class="card-body" style="background-color:;">
 
-          <!-- navbar -->
+          <!-- navbar --!>
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/eid-web/eid.html">身份證</a>
+              <a id="nav-eid" class="nav-link" aria-current="page" href="/eid-web/eid.html">身份證</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/eid-web/issues.html">永續合作</a>
+              <a id="nav-issues" class="nav-link" href="/eid-web/issues.html">永續合作</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/eid-web/foot_print.html">數位足跡</a>
+              <a id="nav-foor_print" class="nav-link" href="/eid-web/foot_print.html">數位足跡</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/eid-web/wallet.html">錢包</a>
+              <a id="nav-wallet" class="nav-link" aria-current="page" href="/eid-web/wallet.html">錢包</a>
             </li>
           </ul>
 
