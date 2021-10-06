@@ -13,4 +13,3 @@ function navbar() {
     $("#nav-wallet").addClass("active");
   }
 }
-

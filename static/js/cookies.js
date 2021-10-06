@@ -1,24 +1,22 @@
-function parseCookie() {
-    var cookieObj = {};
-    var cookieAry = document.cookie.split(';');
-    var cookie;
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
-    for (var i=0, l=cookieAry.length; i<l; ++i) {
-        cookie = jQuery.trim(cookieAry[i]);
-        cookie = cookie.split('=');
-        cookieObj[cookie[0]] = cookie[1];
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     }
-
-    return cookieObj;
-}
-
-function getCookieByName(name) {
-
-  var value = parseCookie()[name];
-  if (value) {
-    value = decodeURIComponent(value);
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
   }
-
-  return false;
+  return "";
 }
-
