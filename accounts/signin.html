@@ -24,7 +24,7 @@
 	    const obj = JSON.parse(returnData);
             setCookie("jwt", obj.token, 30);
 	    console.log("Get JWT from cookie" +  getCookie("jwt"));
-	    window.location.replace("/eid-web/eid.html");
+	    // window.location.replace("/eid-web/eid.html");
           },
           error: function(xhr, ajaxOptions, thrownError){
             console.log(thrownError);
