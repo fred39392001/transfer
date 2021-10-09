@@ -10,11 +10,10 @@ function checkAuth(e) {
 
   } else {
 
-    // TODO: Verify token
+    // Verify token
     console.log("Verifing JWT ...");
     var dataJSON = {};
     dataJSON.token =  getCookie("jwt");
-    e.preventDefault();
     $.ajax({
       url: "https://eid-backend.townway.com.tw/accounts/verify_jwt",
       type: "POST",
@@ -23,10 +22,10 @@ function checkAuth(e) {
       success: function(returnData) {
         const obj = JSON.parse(returnData);
 
-	if (obj.result == "True") {
+	if (obj.result) {
 	  console.log("JWT still avliable");
-          setCookie("jwt", obj.token, 1);
         } else {
+	  console.log("Hello verify fail, result == " + obj.result);
           window.location.replace("/eid-web/accounts/signin.html");
 	}
 
@@ -35,7 +34,5 @@ function checkAuth(e) {
         console.log(thrownError);
       }
     }); 
-
-    // console.log("jwt = " + getCookie("jwt"));
   }
 }
