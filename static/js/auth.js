@@ -9,7 +9,6 @@ function checkAuth(e) {
     }
 
   } else {
-
     // Verify token
     console.log("Verifing JWT ...");
     var dataJSON = {};
