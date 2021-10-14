@@ -7,16 +7,40 @@
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="static/css/style.css" rel="stylesheet" type="text/css">
-    <script src="static/js/cookies.js"></script>
-    <script src="static/js/auth.js"></script>
-    <script src="static/js/navbar.js"></script>
-    <script src="static/js/set-page-info.js"></script>
-    <script src="static/js/init.js"></script>
+    <script src="/static/js/cookies.js"></script>
+    <script>
+    $(function () {
+      $('form').on('submit', function(e){
+        var dataJSON = {};
+        dataJSON.username =  $("#username").val();
+        dataJSON.password =  $("#password").val();
+        e.preventDefault();
+        $.ajax({
+          url: "https://eid-backend.townway.com.tw/accounts/signin",
+          type: "POST",
+    	  crossDomain: true,
+          data:  dataJSON,
+          success: function(returnData) {
+	    const obj = JSON.parse(returnData);
+            setCookie("jwt", obj.token, 1);
+	    setCookie("username", $("#username").val(), 1);
+	    console.log("Get JWT from cookie" +  getCookie("jwt"));
+
+	    // Localhost only
+	    // window.location.replace("/");
+	    // Git page
+	    // window.location.replace("/eid-web/eid.html");
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError);
+          }
+        });
+      });
+    });
+    </script>
   </head>
 
-  <body onload="init();">
-
+  <body>
   <!-- namecard -->
   <div class="container-fluid justify-content-center">
 
@@ -26,9 +50,9 @@
       <div class="row no-gutters">
         <div class="col-md-7">
           <div class="card-body">
-            
-	  <!-- navbar --!>
-	  <ul class="nav nav-tabs">
+          
+          <!-- navbar --!>
+          <ul class="nav nav-tabs">
             <li class="nav-item">
               <a id="nav-eid" class="nav-link" aria-current="page" href="/eid-web/eid.html">身份證</a>
             </li>
@@ -48,48 +72,36 @@
             <p class="mr-3  mb-0">數位鎮民身份證</p>
             <p>The eID card for digital townee.</p>
           </div>
-
-          <div class="text-warning d-block d-md-none">
+         
+          <div class="h6 text-warning d-none d-md-block">
+            <p id="message" class="mr-3  mb-0" style="color:red"></p>
+          </div>
+	  
+	  <div class="text-warning d-block d-md-none">
               <p class="mr-3 d-none d-sm-block mb-0">數位鎮民身份證</p>
               <p>The eID card for digital townee.</p>
           </div>
 
-	  <div id="username" class="h3 mt-lg-5 pt-lg-5 d-none d-lg-block">證號：<div id="userid" style="display: inline"> </div></div>
-	  <div class="h3 mt-md-4 pt-md-4 d-none d-md-block d-lg-none ">證號：<div id="userid" style="display: inline"> </div> </div>
-          <div class="d-lg-flex mt-4">
-            <p class="mr-lg-3 d-none d-lg-block">職業： 鎮民</p>
-	    <p id="balance" class="d-none d-lg-block">光幣：<div id="balance"> 0 </div> 枚</p>
-          </div>
-
-          <div class="d-flex d-lg-none mt-3">
-              <img
-                src="static/imgs/pages/career.svg"
-                class="mr-1"
-                style="max-height: 20px"
-                alt="職業"
-              />
-              <p class="mr-3">鎮民</p>
-              <img
-                src="static/imgs/pages/coin.svg"
-                class="mr-1"
-                style="max-height: 20px;"
-                alt="光幣"
-              />
-	      <p> <div id="balance"> 0 </div> 枚</p>
-          </div> <!-- d-flex d-lg-none mt-3-->
-        </div> <!-- col-md-7 -->
+	  <form>
+            <div class="form-group">
+              <label for="username">使用者名稱：</label>
+              <input type="username" class="form-control" id="username" aria-describedby="username" placeholder="username">
+            </div>
+  
+	    <div class="form-group">
+              <label for="password">密碼：</label>
+              <input type="password" class="form-control" id="password" placeholder="password">
+            </div>
+  
+	    <button type="submit" class="btn btn-primary">送出</button>
+          </form>
+          
+	</div> <!-- col-md-7 -->
       </div> <!-- row no-gutters -->
-
-      <div class="col-md-5">
-        <p class="mr-3 mb-3 mt-3"> <!-- WIP -->
-          <img src="static/imgs/pages/me.png" class="card-img" alt="" style="padding-left: 20px;  padding-right: 20px; width:90%; height:90%;">
-      </div> <!-- col-md-5 -->
-    </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning -->
+      
+    </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 
 
     </div> <!-- container -->
-
-
-
 
   </body>
 </html>

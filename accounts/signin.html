@@ -12,8 +12,8 @@
     $(function () {
       $('form').on('submit', function(e){
         var dataJSON = {};
-        dataJSON.username =  $("#username").val();;
-        dataJSON.password =  $("#password").val();;
+        dataJSON.username =  $("#username").val();
+        dataJSON.password =  $("#password").val();
         e.preventDefault();
         $.ajax({
           url: "https://eid-backend.townway.com.tw/accounts/signin",
@@ -23,7 +23,12 @@
           success: function(returnData) {
 	    const obj = JSON.parse(returnData);
             setCookie("jwt", obj.token, 1);
+	    setCookie("username", $("#username").val(), 1);
 	    console.log("Get JWT from cookie" +  getCookie("jwt"));
+
+	    // Localhost only
+	    // window.location.replace("/");
+	    // Git page
 	    window.location.replace("/eid-web/eid.html");
           },
           error: function(xhr, ajaxOptions, thrownError){
@@ -36,7 +41,6 @@
   </head>
 
   <body>
-
   <!-- namecard -->
   <div class="container-fluid justify-content-center">
 
