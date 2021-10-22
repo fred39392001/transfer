@@ -12,11 +12,12 @@
     $(function () {
       $('form').on('submit', function(e){
         var dataJSON = {};
-        dataJSON.username =  $("#username").val();
+        dataJSON.name =  $("#name").val();
         dataJSON.password =  $("#password").val();
+        dataJSON.email =  $("#email").val();
         e.preventDefault();
         $.ajax({
-          url: "https://eid-backend.townway.com.tw/accounts/signin",
+          url: "https://eid-backend.townway.com.tw/accounts/signup",
           type: "POST",
     	  crossDomain: true,
           data:  dataJSON,
@@ -29,7 +30,7 @@
 	    // Localhost only
 	    // window.location.replace("/");
 	    // Git page
-	    window.location.replace("/eid-web/eid.html");
+	    window.location.replace("/eid-web/accounts/signin.html");
           },
           error: function(xhr, ajaxOptions, thrownError){
             console.log(thrownError);
@@ -84,18 +85,22 @@
 
 	  <form>
             <div class="form-group">
-              <label for="username">使用者名稱：</label>
-              <input type="username" class="form-control" id="username" aria-describedby="username" placeholder="username">
+              <label for="name">姓名：</label>
+              <input type="name" class="form-control" id="name" aria-describedby="name" placeholder="姓名">
             </div>
   
 	    <div class="form-group">
               <label for="password">密碼：</label>
-              <input type="password" class="form-control" id="password" placeholder="password">
+              <input type="password" class="form-control" id="password" placeholder="密碼">
+            </div>
+            
+	    <div class="form-group">
+              <label for="email">電子郵件：</label>
+              <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="電子郵件">
             </div>
   
-	    <button type="submit" class="btn btn-primary">登入</button>
+	    <button type="submit" class="btn btn-primary">註冊</button>
           </form>
-	    <a class="btn btn-primary" href="/eid-web/accounts/signup.html" role="button">建立新帳號</a>
           
 	</div> <!-- col-md-7 -->
       </div> <!-- row no-gutters -->
