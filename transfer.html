@@ -9,6 +9,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <script>
+      function countdown() {
+        // Localhost only
+        // window.location.replace("/signin.html");
+
+        // Git page
+        window.location.replace("/eid-web/accounts/signin.html");
+
+      }
+      setInterval(function(){ countdown(); },10000);
+    </script>
   </head>
 
   <body>
@@ -24,10 +35,13 @@
            <img src="static/imgs/rotate-phone.png" class="img-fluid">
 
             <p><h4>竹山數位鎮民身份證</h4>
-            <p><a>請旋轉您的手機，達到最佳顯示
+            <p><a>圍了確保您有絕佳的使用者體驗，
+	    <p><a>請將您的螢幕權轉為橫向，達到最佳顯示
             <p><a>請用：Chrome / Siri 瀏覽器
+	    <p><a>謝謝。
+	    <p style="color:red;"><a>(畫面停留 10 秒鐘後教將自動跳轉至登入頁面)
             <br><br>
-	    <p><a class="btn btn-primary" href="transfer.html" role="button">成為數位鎮民</a>
+            <p><a class="btn btn-primary" href="eid.html" role="button">前往領證</a>
         </div> <!-- card-body-->
       </div> <!-- row no-gutters -->
 
