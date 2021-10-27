@@ -12,7 +12,7 @@
     $(function () {
       $('form').on('submit', function(e){
         var dataJSON = {};
-        dataJSON.name =  $("#name").val();
+        dataJSON.username =  $("#username").val();
         dataJSON.password =  $("#password").val();
         dataJSON.email =  $("#email").val();
         e.preventDefault();
@@ -95,8 +95,8 @@
             </div>
             
 	    <div class="form-group">
-              <label for="name">姓名：</label>
-              <input type="name" class="form-control" id="name" aria-describedby="name" placeholder="姓名">
+              <label for="username">姓名：</label>
+              <input type="username" class="form-control" id="username" aria-describedby="username" placeholder="姓名">
             </div>
 	    <button type="submit" class="btn btn-primary">註冊</button>
           </form>
