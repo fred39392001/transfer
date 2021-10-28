@@ -13,15 +13,30 @@
     <script src="static/js/auth.js"></script>
     <script src="static/js/set-page-info.js"></script>
     <script src="static/js/init.js"></script>
+
     <script>
-      function issues(project_id) {
-        setCookie("project_id", project_id, 1);
+      function issue_next_page(new_item) {
+        var value_15 = document.getElementById("sdgs-15").value;
+        var value_17 = document.getElementById("sdgs-17").value;
 
-	// Localhost only
-        // window.location.replace("issues-1.html");
-        // Git page
-        window.location.replace("/eid-web/issues-1.html");
+	if (value_15 != "") {
+          setCookie("value_15", value_15, 1);
+	}
+	if (value_17 != "") {
+          setCookie("value_17", value_17, 1);
+	}
 
+	if (new_item == 0) {
+          // Localhost only
+          // window.location.replace("issues-3.html");
+          // Git page
+          window.location.replace("/eid-web/issues-3.html");
+	} else {
+          // Localhost only
+          window.location.replace("issues-new.html");
+          // Git page
+          window.location.replace("/eid-web/issues-new.html");
+	}
       }
     </script>
   </head>
@@ -54,23 +69,21 @@
 
 	  <br><br><br>
 
-            <div class="row" style="background-color:;">
-              <div class="col-md-4">
-                <div class="card p-3 mb-2">
-		  <a href = "#" onclick="issues(1)"><img src="static/imgs/pages/me.png" width="50%" height="50%"></a>
-	        </div> <!-- card p-3 mb-2-->
-              </div> <!-- col-md-4 -->
-              <div class="col-md-4">
-                <div class="card p-3 mb-2">
-		  <a href = "#" onclick="issues(2)"><img src="static/imgs/pages/me.png" width="50%" height="50%"></a>
-	        </div> <!-- card p-3 mb-2-->
-              </div> <!-- col-md-4 -->
-              <div class="col-md-4">
-                <div class="card p-3 mb-2">
-  		  <a href = "#" onclick="issues(3)"><img src="static/imgs/pages/me.png" width="50%" height="50%"></a>
-	        </div> <!-- card p-3 mb-2-->
-              </div> <!-- col-md-4 -->
-	    </div> <!-- row -->
+
+          <form>
+            <div class="form-group">
+
+              <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+	        <label for="item"><img src="/eid-web/static/imgs/SDGS/E_WEB_15.png" style="width:5%; height: 5%;"/> 支持, <input id="sdgs-15" /> </label>
+              </div>
+
+              <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+	        <label for="item"><img src="/eid-web/static/imgs/SDGS/E_WEB_17.png" style="width:5%; height: 5%;"/> 支持, <input id="sdgs-17" /> </label>
+              </div>
+
+	      <p><a class="btn btn-primary" role="button" onclick = "issue_next_page(0)">提交</a>
+	      <p><a class="btn btn-primary" role="button" onclick = "issue_next_page(1)">新增指標</a>
+          </form>
 
 	  </div> <!-- card-body-->
       </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 

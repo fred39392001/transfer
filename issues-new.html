@@ -9,22 +9,30 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="static/css/style.css" rel="stylesheet" type="text/css">
     <script src="static/js/cookies.js"></script>
-    <script src="static/js/auth.js"></script>
     <script src="static/js/navbar.js"></script>
+    <script src="static/js/auth.js"></script>
     <script src="static/js/set-page-info.js"></script>
     <script src="static/js/init.js"></script>
+
+    <script>
+      function issue_next_page(new_item) {
+          // Localhost only
+          window.location.replace("issues-3.html");
+          // Git page
+          // window.location.replace("/eid-web/issues-1.html");
+      }
+    </script>
   </head>
 
   <body onload="init();">
 
   <!-- namecard -->
-  <div class="container-fluid justify-content-center">
-
-    <div
-      class="card mb-3 card-bg-eid rounded-0 card-shadow border-warning"
-      style="max-width: 100%; height:100%;">
-      <div class="row no-gutters">
-        <div class="card-body" style="background-color:;">
+  <div class="container-fluid justify-content-center" >
+    <div class="row no-gutters" style="height: 100%;">
+      <div
+        class="card mb-3 card-bg-eid rounded-0 card-shadow border-warning"
+        style="min-width:100%;"> 
+          <div class="card-body" style="width:100%; height: 100%;">
 
           <!-- navbar --!>
           <ul class="nav nav-tabs">
@@ -35,26 +43,31 @@
               <a id="nav-issues" class="nav-link" href="/eid-web/issues.html">永續合作</a>
             </li>
             <li class="nav-item">
-              <a id="nav-foot_print" class="nav-link" href="/eid-web/foot_print.html">數位足跡</a>
+              <a id="nav-foor_print" class="nav-link" href="/eid-web/foot_print.html">數位足跡</a>
             </li>
             <li class="nav-item">
               <a id="nav-wallet" class="nav-link" aria-current="page" href="/eid-web/wallet.html">錢包</a>
             </li>
           </ul>
 
-          <br>
+	  <br><br><br>
 
-	<!-- report -->
-	<div class="col-md-8">
-          <canvas id="polar-chart"></canvas> 
-	</div>
-	<!-- report -->
 
-        </div> <!-- card-->
-      </div> <!-- row no-gutters -->    
-    </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 
+          <form>
+            <div class="form-group">
+
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <label for="item"><img src="/eid-web/static/imgs/plus.png" /> 支持, <input id="sdgs-new" /> </label>
+              </div>
+
+              <p><a class="btn btn-primary" role="button" onclick = "issue_next_page(0)">提交</a>
+          </form>
+
+
+	  </div> <!-- card-body-->
+      </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning --> 
+    </div>
   </div> <!-- container -->
 
   </body>
-
 </html>

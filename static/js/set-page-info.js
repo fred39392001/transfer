@@ -10,7 +10,7 @@ function setPageInfo() {
 
   if (page == "eid.html") {
     setInfoEid();
-  } else if (page == "issues.html") {
+  } else if (page.includes("issues")) {
     $("#nav-issues").addClass("active");
   } else if (page == "foot_print.html") {
     $("#nav-foot_print").addClass("active");
