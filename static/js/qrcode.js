@@ -1,3 +1,45 @@
+function get_task(url) {
+  console.log("Getting rocess task ...");
+
+  var path = url.split("/");
+  var uuid_task = path[4];
+  var url_task_save = "https://eid-backend.townway.com.tw/tasks/save";
+
+  var username = getCookie("username");
+
+  $.ajax({
+    url: url_task_save + "/" + uuid_task + "?username=" + username,
+    type: "GET",
+    async: false,
+    crossDomain: true,
+    success: function(returnData) {
+      console.log(returnData);
+
+      // Localhost only
+      // window.location.replace("/eid-web/issues.html");
+
+      // Git page
+      window.location.replace("/eid-web/issues.html");
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+      
+      // Localhost only
+      // window.location.replace("/eid-web/issues.html");
+
+      // Git page
+      window.location.replace("/eid-web/issues.html");
+    }
+  });
+}
+
+function analysis_url(url) {
+  var path = url.split("/");
+  return path[3];
+}
+
+// --- --- --- ---
+
 function start_scanner(cameraId) {
 
 // Create instance of the object. The only argument is the "id" of HTML element created above.
@@ -12,10 +54,14 @@ html5QrCode.start(
   },
   qrCodeMessage => {
     // do something when code is read. For example:
-    console.log(`QR Code detected: ${qrCodeMessage}`);
+    // URL analysis
+    var method = analysis_url(qrCodeMessage);
+    if (method === "tasks") {
+      get_task(qrCodeMessage);
+    }
 
     // Redirect to pay
-    window.location.href = "/pay"; 
+    // window.location.href = "/pay"; 
   },
   errorMessage => {
     // parse error, ideally ignore it. For example:
