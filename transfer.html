@@ -1,5 +1,9 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
@@ -23,31 +27,22 @@
   </head>
 
   <body>
-
-  <!-- namecard -->
-  <div class="container-fluid justify-content-center">
-
-    <div
-      class="card mb-3 card-bg-eid rounded-0 card-shadow border-warning"
-      style="width: 100% ;height: 100%;">
-      <div class="row no-gutters">
-        <div class="card-body">
-           <img src="static/imgs/rotate-phone.png" class="img-fluid">
-
-            <p><h4>竹山數位鎮民身份證</h4>
-            <p><a>圍了確保您有絕佳的使用者體驗，
-	    <p><a>請將您的螢幕權轉為橫向，達到最佳顯示
-            <p><a>請用：Chrome / Siri 瀏覽器
-	    <p><a>謝謝。
-	    <p style="color:red;"><a>(畫面停留 10 秒鐘後教將自動跳轉至登入頁面)
-            <br><br>
-            <p><a class="btn btn-primary" href="eid.html" role="button">前往領證</a>
-        </div> <!-- card-body-->
-      </div> <!-- row no-gutters -->
-
-    </div> <!-- card mb-3 card-bg-eid rounded-0 card-shadow border-warning -->
-
-    </div> <!-- container -->
-
-  </body>
+    <div class="container-fluid border border-warning border-width-lg min-vh-100">
+      <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand" href="index.html">
+          <img class="mt-3 logo-md" src="static/imgs/eID-logo.png">
+        </a>
+      </nav>
+      <div class="container" style="height: 82vh">
+        <div class="row h-100 align-items-center">
+          <div class="col">
+            <div class="text-center">
+              <img src="static/imgs/smartphone-rotate.png" alt="">
+              <p class="font-weight-bold mt-4">NOTE: 為確保您有絕佳的使用者體驗，請將您的螢幕旋轉為橫向，謝謝。</p>
+              <small class="text-danger">(畫面停留10秒後自動導向至帳號登入頁面)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </html>
